@@ -1,6 +1,5 @@
 package com.securelog.app.View;
 
-import javax.security.auth.spi.LoginModule;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;

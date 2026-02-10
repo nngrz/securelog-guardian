@@ -1,8 +1,6 @@
 package com.securelog.app;
 
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-
 import com.securelog.app.View.MainFrame;
 
 public class Main {

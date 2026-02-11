@@ -32,4 +32,11 @@ public class LogTableModel extends AbstractTableModel{
         rows.addAll(data);
         fireTableDataChanged();
     }
+
+    public LogEntry getEntryAt(int row) {
+        if (row < 0 || row >= rows.size()) {
+            return null;
+        }
+        return rows.get(row);
+    }
 }

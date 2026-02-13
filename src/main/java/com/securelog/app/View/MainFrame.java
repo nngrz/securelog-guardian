@@ -6,8 +6,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
+import com.securelog.app.Controller.AlertsController;
 import com.securelog.app.Controller.IntegrityController;
 import com.securelog.app.Controller.LogController;
+import com.securelog.app.Model.AlertModel;
 import com.securelog.app.Model.IntegrityModel;
 import com.securelog.app.Model.LogModel;
 
@@ -36,9 +38,13 @@ public class MainFrame extends JFrame {
         new LogController(logModel, logView);
 
         tabs.addTab("Log Viewer", logView);
-        tabs.addTab("Alerts", new JPanel());
 
-        // Integrity MVC
+        AlertModel alertModel = new AlertModel();
+        AlertsPanel alertsView = new AlertsPanel();
+        new AlertsController(alertModel, alertsView);
+
+        tabs.addTab("Alerts", alertsView);
+
         IntegrityModel integrityModel = new IntegrityModel();
         IntegrityPanel integrityView = new IntegrityPanel();
         new IntegrityController(integrityModel, integrityView);

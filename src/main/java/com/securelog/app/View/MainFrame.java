@@ -1,6 +1,9 @@
 package com.securelog.app.View;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
@@ -40,7 +43,7 @@ public class MainFrame extends JFrame {
         //Log MVC
         LogModel logModel = new LogModel();
         LogViewerPanel logView = new LogViewerPanel();
-        new LogController(logModel, logView, alertsController);
+        LogController logController = new LogController(logModel, logView, alertsController);
 
         IntegrityModel integrityModel = new IntegrityModel();
         IntegrityPanel integrityView = new IntegrityPanel();
@@ -51,5 +54,25 @@ public class MainFrame extends JFrame {
         tabs.addTab("Alerts", alertsView);
 
         setContentPane(tabs);
+        setJMenuBar(createMenuBar(logController));
+    }
+
+    private JMenuBar createMenuBar(LogController logController) {
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("File");
+
+        JMenuItem openLogItem = new JMenuItem("Open Log...");
+        openLogItem.addActionListener(e -> logController.openLog());
+
+        JMenuItem exitItem = new JMenuItem("Exit");
+        exitItem.addActionListener(e -> dispose());
+
+        fileMenu.add(openLogItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitItem);
+
+        menuBar.add(fileMenu);
+        return menuBar;
     }
 }

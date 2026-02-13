@@ -44,7 +44,7 @@ public class LogController {
     }
 
     public void bindEvents() {
-        view.getOpenButton().addActionListener((e -> openAndLoad()));
+        view.getOpenButton().addActionListener((e -> openLog()));
         view.getLevelBox().addActionListener(e -> refreshTable());
 
         view.getSearchField().getDocument().addDocumentListener(new DocumentListener() {
@@ -60,7 +60,7 @@ public class LogController {
         tableModel.setData(model.getFiltered(level, keyword));
     }
 
-    private void openAndLoad() {
+    public void openLog() {
         JFileChooser chooser = new JFileChooser();
         if (chooser.showOpenDialog(view) != JFileChooser.APPROVE_OPTION) return;
 

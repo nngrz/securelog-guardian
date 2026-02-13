@@ -1,7 +1,6 @@
 package com.securelog.app.View;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
@@ -33,23 +32,23 @@ public class MainFrame extends JFrame {
     private void initUI() {
         JTabbedPane tabs = new JTabbedPane();
 
-        LogModel logModel = new LogModel();
-        LogViewerPanel logView = new LogViewerPanel();
-        new LogController(logModel, logView);
-
-        tabs.addTab("Log Viewer", logView);
-
+        // Alerts MVC
         AlertModel alertModel = new AlertModel();
         AlertsPanel alertsView = new AlertsPanel();
-        new AlertsController(alertModel, alertsView);
+        AlertsController alertsController = new AlertsController(alertModel, alertsView);
 
-        tabs.addTab("Alerts", alertsView);
+        //Log MVC
+        LogModel logModel = new LogModel();
+        LogViewerPanel logView = new LogViewerPanel();
+        new LogController(logModel, logView, alertsController);
 
         IntegrityModel integrityModel = new IntegrityModel();
         IntegrityPanel integrityView = new IntegrityPanel();
         new IntegrityController(integrityModel, integrityView);
 
+        tabs.addTab("Log Viewer", logView);
         tabs.addTab("Integrity", integrityView);
+        tabs.addTab("Alerts", alertsView);
 
         setContentPane(tabs);
     }

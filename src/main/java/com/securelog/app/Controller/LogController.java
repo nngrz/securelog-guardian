@@ -21,10 +21,12 @@ public class LogController {
     private final LogModel model;
     private final LogViewerPanel view;
     private final LogTableModel tableModel = new LogTableModel();
+    private final AlertsController alertsController;
 
-    public LogController(LogModel model, LogViewerPanel view) {
+    public LogController(LogModel model, LogViewerPanel view, AlertsController alertsController) {
         this.model = model;
         this.view = view;
+        this.alertsController = alertsController;
 
         this.view.getTable().setModel(tableModel);
 
@@ -83,6 +85,10 @@ public class LogController {
 
         model.setAll(loaded);
         refreshTable();
+
+        if (alertsController != null) {
+            alertsController.checkLogs(loaded);
+        }
     }
 
     private void openDetailDialog() {

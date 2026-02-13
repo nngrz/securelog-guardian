@@ -1,10 +1,13 @@
 package com.securelog.app.View;
 
+import java.awt.Window;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTabbedPane;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
@@ -68,11 +71,22 @@ public class MainFrame extends JFrame {
         JMenuItem exitItem = new JMenuItem("Exit");
         exitItem.addActionListener(e -> dispose());
 
+        JMenu helpMenu = new JMenu("Help");
+
+        JMenuItem aboutItem = new JMenuItem("About");
+        aboutItem.addActionListener(e -> {
+            Window w = SwingUtilities.getWindowAncestor(this);
+            new com.securelog.app.View.AboutDialog(w).setVisible(true);
+        });
+
         fileMenu.add(openLogItem);
         fileMenu.addSeparator();
         fileMenu.add(exitItem);
 
+        helpMenu.add(aboutItem);
+
         menuBar.add(fileMenu);
+        menuBar.add(helpMenu);
         return menuBar;
     }
 }

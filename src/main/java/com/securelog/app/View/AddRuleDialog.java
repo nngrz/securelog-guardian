@@ -3,7 +3,6 @@ package com.securelog.app.View;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Window;
-import java.util.concurrent.Flow;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
